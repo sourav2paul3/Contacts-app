@@ -64,7 +64,7 @@ public class ContactService {
 	private final BiFunction<String, MultipartFile, String> photoFunction = (id, image) -> {
 		String fileName=id + fileExtension.apply(image.getOriginalFilename());
 		try {
-			Path fileLocation = Paths.get(Constants.photoDirectory).toAbsolutePath().normalize();
+			Path fileLocation = Paths.get(Constants.PHOTO_DIRECTORY).toAbsolutePath().normalize();
 
 			if (!Files.exists(fileLocation)) {
 				Files.createDirectories(fileLocation);
