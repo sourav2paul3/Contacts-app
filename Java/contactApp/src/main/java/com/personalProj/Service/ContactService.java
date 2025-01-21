@@ -43,6 +43,10 @@ public class ContactService {
 	public Contact createContact(Contact contact) {
 		return contactRepository.save(contact);
 	}
+	
+	public Contact udateContact(Contact contact) {
+		return contactRepository.save(contact);
+	}
 
 	public void deleteContact(Contact contact) {
 		contactRepository.delete(contact);

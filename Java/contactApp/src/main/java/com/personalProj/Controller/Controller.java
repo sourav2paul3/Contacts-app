@@ -35,6 +35,13 @@ public class Controller {
 		URI location = URI.create("/contacts/userId");
 		return ResponseEntity.created(location).body(createdContact);
 	}
+	
+	@PostMapping(value = "/update", produces = "application/json")
+	public ResponseEntity<Contact> updateContact(@RequestBody Contact contact) {
+		Contact createdContact = contactService.udateContact(contact);
+		URI location = URI.create("/contacts/userId");
+		return ResponseEntity.created(location).body(createdContact);
+	}
 
 	@GetMapping(value = "/getContacts", produces = "application/json")
 	public ResponseEntity<Page<Contact>> getContacts(@RequestParam(value = "page", defaultValue = "0") int page,
