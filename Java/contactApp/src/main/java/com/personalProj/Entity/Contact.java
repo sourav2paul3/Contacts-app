@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+//@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 
 @Entity
 @Table(name = "CONTACTS")
@@ -40,7 +40,7 @@ public class Contact {
 	private String phone;
 	
 	@Column(name="ADDRESS")
-	private String addreess;
+	private String address;
 	
 	@Column(name="STATUS")
 	private String status;

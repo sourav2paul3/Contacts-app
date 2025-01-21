@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class Controller {
 	@PostMapping(value = "/create", produces = "application/json")
 	public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
 		Contact createdContact = contactService.createContact(contact);
-		URI location = URI.create("/contacts/" + createdContact.getId());
+		URI location = URI.create("/contacts/userId");
 		return ResponseEntity.created(location).body(createdContact);
 	}
 
@@ -51,9 +52,9 @@ public class Controller {
 		return ResponseEntity.ok().body(contactService.uploadPhoto(id, file));
 	}
 
-	@GetMapping(value = "/getPhoto", produces = "application/json")
-	public byte[] getPhoto(@RequestParam("fileName") String fileName) throws IOException {
-		return Files.readAllBytes(Paths.get(Constants.PHOTO_DIRECTORY+fileName));
+	@GetMapping(value = "/image/{fileName}", produces = "image/png")
+	public byte[] getPhoto(@PathVariable("fileName") String fileName) throws IOException {
+		return Files.readAllBytes(Paths.get(Constants.PHOTO_DIRECTORY+"\\"+fileName));
 	}
 
 }
