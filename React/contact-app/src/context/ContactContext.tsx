@@ -15,7 +15,7 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [popup, setPopup] = useState<boolean>(false);
   useEffect(() => {
     const fetchContacts = async () => {
       setLoading(true);
@@ -43,8 +43,16 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
   }, [currentPage]);
 
   const contextValue = useMemo(
-    () => ({ contacts, currentPage, setCurrentPage, totalPages, loading }),
-    [contacts, currentPage, totalPages, loading]
+    () => ({
+      contacts,
+      currentPage,
+      setCurrentPage,
+      totalPages,
+      loading,
+      popup,
+      setPopup,
+    }),
+    [contacts, currentPage, totalPages, loading, popup]
   );
 
   return (

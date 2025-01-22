@@ -2,13 +2,20 @@ import { useContext } from "react";
 import ContactCard from "./ContactCard";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { contactContext } from "../context/ContactContext";
+import CreateContact from "./CreateContact";
 
 const ContactList = () => {
   const context = useContext(contactContext);
 
   if (context) {
-    const { contacts, currentPage, totalPages, loading, setCurrentPage } =
-      context;
+    const {
+      contacts,
+      currentPage,
+      totalPages,
+      loading,
+      setCurrentPage,
+      popup,
+    } = context;
 
     const handlePrevious = () => {
       if (currentPage > 0) {
@@ -54,6 +61,7 @@ const ContactList = () => {
             <MdNavigateNext />
           </button>
         </div>
+        {popup && <CreateContact />}
       </div>
     );
   }

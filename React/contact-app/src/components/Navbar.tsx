@@ -5,7 +5,11 @@ const Navbar = () => {
   const context = useContext(contactContext);
 
   if (context) {
-    const { contacts } = context;
+    const { contacts, popup, setPopup } = context;
+
+    const handlePopup = () => {
+      setPopup(!popup);
+    };
 
     return (
       <div className="container h-[100px]">
@@ -14,7 +18,7 @@ const Navbar = () => {
             Contact Lists({contacts.length})
           </h1>
           <span className="bg-blue-500 rounded-md p-2 text-white">
-            <button className="gap-1 flex items-center ">
+            <button className="gap-1 flex items-center" onClick={handlePopup}>
               <FaPlus /> Add New
             </button>
           </span>

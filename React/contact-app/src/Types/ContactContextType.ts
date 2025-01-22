@@ -6,4 +6,6 @@ export type ContactContextType = {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalPages: number;
   loading: boolean;
+  popup: boolean;
+  setPopup: React.Dispatch<React.SetStateAction<boolean>>;
 };
