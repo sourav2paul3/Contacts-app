@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .container {
-  @apply m-auto lg:w-[70%] w-[80%];
+  @apply m-auto lg:w-[70%] w-[100%];
 }
 
 .input {
-  @apply bg-gray-300 border-0 focus:ring-0 focus:outline-none rounded-md;
+  @apply text-xl mt-[10px] mb-[10px] bg-gray-300 border-0 focus:ring-0 focus:outline-none rounded-md;
 }
 
 .loader {

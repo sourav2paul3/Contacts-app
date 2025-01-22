@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,7 +56,7 @@ public class Controller {
 	}
 	
 	@PutMapping(value = "/updatePhoto", produces = "application/json")
-	public ResponseEntity<String> updatePhoto(@RequestParam("id") String id,@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<Map<String,String>> updatePhoto(@RequestParam("id") String id,@RequestParam("file") MultipartFile file) {
 		return ResponseEntity.ok().body(contactService.uploadPhoto(id, file));
 	}
 

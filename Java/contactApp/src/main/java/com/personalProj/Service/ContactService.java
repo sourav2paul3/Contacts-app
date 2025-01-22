@@ -4,6 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -52,13 +54,15 @@ public class ContactService {
 		contactRepository.delete(contact);
 	}
 
-	public String uploadPhoto(String id, MultipartFile file) {
+	public Map<String,String> uploadPhoto(String id, MultipartFile file) {
 		log.info("Saving Photo for id: {}",id);
 		Contact contact = getContact(id);
 		String photoUrl = photoFunction.apply(id, file);
 		contact.setPhotoUrl(photoUrl);
 		contactRepository.save(contact);
-		return photoUrl;
+		Map<String, String> res= new HashMap<>();
+		res.put("photoUrl", photoUrl);
+		return res;
 	}
 
 	private final Function<String, String> fileExtension = fileName -> Optional.of(fileName)
