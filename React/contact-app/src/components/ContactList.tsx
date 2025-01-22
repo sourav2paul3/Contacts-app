@@ -3,6 +3,7 @@ import ContactCard from "./ContactCard";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { contactContext } from "../context/ContactContext";
 import CreateContact from "./CreateContact";
+import { Link } from "react-router-dom";
 
 const ContactList = () => {
   const context = useContext(contactContext);
@@ -36,7 +37,9 @@ const ContactList = () => {
             <p>Loading...</p>
           ) : contacts.length > 0 ? (
             contacts.map((contact) => (
-              <ContactCard key={contact.id} contact={contact} />
+              <Link to={`/contact/${contact.id}`} key={contact.id}>
+                <ContactCard key={contact.id} contact={contact} />
+              </Link>
             ))
           ) : (
             <p>No contacts found.</p>

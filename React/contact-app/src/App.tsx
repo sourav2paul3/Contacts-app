@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { NavBar, ContactList } from "./components";
+import { NavBar, ContactList, ContactDetails } from "./components";
 import { ContactProvider } from "./context/ContactContext";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
           <Route path="*" element={<Navigate to="/contacts" />} />
           <Route path="/" element={<Navigate to="/contacts" />} />
           <Route path="/contacts" element={<ContactList />} />
+          <Route path="/contact/:id" element={<ContactDetails />} />
         </Routes>
       </BrowserRouter>
     </ContactProvider>
