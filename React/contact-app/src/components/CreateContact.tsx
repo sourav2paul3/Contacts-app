@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { contactContext } from "../context/ContactContext";
 import { Contact } from "../Types/ContactType";
 import { toast, ToastContainer } from "react-toastify";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoSaveOutline } from "react-icons/io5";
+import { IoCloudUploadOutline } from "react-icons/io5";
 const CreateContact = () => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [contact, setContact] = useState<Contact | undefined>(undefined);
   const [image, setImage] = useState<File | null>(null);
   const context = useContext(contactContext);
@@ -46,6 +48,10 @@ const CreateContact = () => {
       } catch (error) {
         toast.error("Error while creating contact");
       }
+    };
+
+    const handleFileSelect = () => {
+      fileInputRef.current?.click();
     };
     return (
       <>
@@ -161,14 +167,21 @@ const CreateContact = () => {
                 <div className="flex flex-col col-span-2 gap-2">
                   <h1 className="font-semibold">Profile Photo</h1>
                   <div className="flex items-center gap-2">
+                    <button
+                      className="bg-blue-500 text-white py-2 px-4 rounded-lg text-sm flex items-center gap-2 w-[150px]"
+                      type="button"
+                      onClick={handleFileSelect}
+                    >
+                      <IoCloudUploadOutline size={20} />
+                      Choose Image
+                    </button>
                     <input
                       type="file"
-                      className="bg-transparent"
+                      ref={fileInputRef}
+                      className="hidden"
                       onChange={(e) => {
                         const file = e.target.files?.[0];
-                        if (file) {
-                          setImage(file);
-                        }
+                        if (file) setImage(file);
                       }}
                     />
                   </div>

@@ -99,7 +99,7 @@ const ContactDetails = () => {
             JPG, GIF, or PNG, Max size of 10MB
           </p>
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg text-sm flex items-center gap-2"
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg text-sm flex items-center gap-2 w-[150px]"
             onClick={handleFileSelect}
           >
             <IoCloudUploadOutline size={20} />
