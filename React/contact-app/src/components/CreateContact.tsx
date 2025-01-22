@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { contactContext } from "../context/ContactContext";
 import { Contact } from "../Types/ContactType";
 import { toast, ToastContainer } from "react-toastify";
+import { MdOutlineCancel } from "react-icons/md";
+import { IoSaveOutline } from "react-icons/io5";
 const CreateContact = () => {
   const [contact, setContact] = useState<Contact | undefined>(undefined);
   const [image, setImage] = useState<File | null>(null);
@@ -72,7 +74,7 @@ const CreateContact = () => {
                 <div>
                   <h1 className="font-semibold">Email</h1>
                   <input
-                    type="text"
+                    type="email"
                     className="input"
                     value={contact?.email}
                     onChange={(e) => {
@@ -174,16 +176,22 @@ const CreateContact = () => {
               </div>
               <div className="flex justify-between mt-4">
                 <button
-                  className="bg-red-500 px-2 py-1 text-white rounded-md"
+                  className="bg-red-500 px-2 py-1 text-white rounded-md w-[100px] flex items-center gap-2"
                   type="submit"
                   onClick={handleClosePopup}
                 >
+                  <span>
+                    <MdOutlineCancel />
+                  </span>
                   Cancel
                 </button>
                 <button
-                  className="bg-blue-900 px-2 py-1 text-white rounded-md"
+                  className="bg-blue-900 px-2 py-1 text-white rounded-md w-[100px] flex items-center gap-2"
                   type="submit"
                 >
+                  <span>
+                    <IoSaveOutline />
+                  </span>
                   Save
                 </button>
               </div>
