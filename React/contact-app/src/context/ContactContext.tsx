@@ -16,6 +16,7 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [popup, setPopup] = useState<boolean>(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
   useEffect(() => {
     const fetchContacts = async () => {
       setLoading(true);
@@ -32,6 +33,7 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
         if (data.content.length !== 0) {
           setContacts(data.content);
           setTotalPages(data.totalPages);
+          setTotalCount(data.totalElements);
         }
       } catch (error) {
         console.error("Error fetching contacts:", error);
@@ -51,8 +53,9 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
       loading,
       popup,
       setPopup,
+      totalCount,
     }),
-    [contacts, currentPage, totalPages, loading, popup]
+    [contacts, currentPage, totalPages, loading, popup, totalCount]
   );
 
   return (

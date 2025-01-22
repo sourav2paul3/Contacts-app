@@ -8,4 +8,5 @@ export type ContactContextType = {
   loading: boolean;
   popup: boolean;
   setPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  totalCount: number;
 };

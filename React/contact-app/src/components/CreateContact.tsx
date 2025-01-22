@@ -4,7 +4,8 @@ const CreateContact = () => {
   const context = useContext(contactContext);
   if (context) {
     const { setPopup } = context;
-    const handleClosePopup = () => {
+    const handleClosePopup = (event: React.FormEvent) => {
+      event.preventDefault();
       setPopup(false);
     };
     const handleSave = () => {};
@@ -12,10 +13,12 @@ const CreateContact = () => {
       <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center z-50">
         <div className="bg-gray-400 bg-opacity-70 backdrop-blur-sm p-8 rounded-lg shadow-lg">
           <h1 className="text-xl font-bold">New Contact</h1>
-          <form onAbort={handleClosePopup} onSubmit={handleSave}>
+          <form onSubmit={handleSave}>
             <div className="grid grid-cols-2 py-4 gap-4">
               <div>
-                <h1 className="font-semibold">Name</h1>
+                <h1 className="font-semibold">
+                  Name <span className="text-red-800">*</span>
+                </h1>
                 <input type="text" className="input" />
               </div>
               <div>
@@ -27,7 +30,9 @@ const CreateContact = () => {
                 <input type="text" className="input" />
               </div>
               <div>
-                <h1 className="font-semibold">Phone Number</h1>
+                <h1 className="font-semibold">
+                  Phone Number <span className="text-red-800">*</span>
+                </h1>
                 <input type="text" className="input" />
               </div>
               <div>
@@ -44,12 +49,10 @@ const CreateContact = () => {
               <div className="flex flex-col col-span-2 gap-2">
                 <h1 className="font-semibold">Profile Photo</h1>
                 <div className="flex items-center gap-2">
-                  <button className="bg-blue-900 rounded p-1 text-sm text-gray-300">
-                    Choose File
-                  </button>
                   <input
+                    type="file"
                     className="bg-transparent "
-                    value="No file chosen"
+                    readOnly
                   ></input>
                 </div>
               </div>
@@ -58,6 +61,7 @@ const CreateContact = () => {
               <button
                 className="bg-red-500 px-2 py-1 text-white rounded-md"
                 type="submit"
+                onClick={handleClosePopup}
               >
                 Cancel
               </button>
