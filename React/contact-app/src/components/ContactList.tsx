@@ -34,7 +34,9 @@ const ContactList = () => {
       <div className="w-full">
         <div className="container grid grid-cols-2 lg:grid-cols-4 h-[full] bg-blue gap-9">
           {loading ? (
-            <p>Loading...</p>
+            <div className="flex justify-center items-center h-full">
+              <div className="loader"></div>
+            </div>
           ) : contacts.length > 0 ? (
             contacts.map((contact) => (
               <Link to={`/contact/${contact.id}`} key={contact.id}>
@@ -69,7 +71,11 @@ const ContactList = () => {
     );
   }
 
-  return <p>Loading context...</p>; // Fallback while context is loading
+  return (
+    <div className="flex justify-center items-center h-full">
+      <div className="loader"></div>
+    </div>
+  );
 };
 
 export default ContactList;
