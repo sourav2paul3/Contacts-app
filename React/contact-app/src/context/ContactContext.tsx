@@ -42,7 +42,7 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
       }
     };
     fetchContacts();
-  }, [currentPage]);
+  }, [currentPage, popup]);
 
   const contextValue = useMemo(
     () => ({
