@@ -4,15 +4,23 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdPhone } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 import { RxCheckCircled } from "react-icons/rx";
+import { FaUserCircle } from "react-icons/fa";
 const ContactCard = ({ contact }: { contact: Contact }) => {
   return (
-    <div className="w-[260px] h-[235px] bg-blue-100 border border-black">
+    <div className="w-[260px] h-[235px] bg-blue-100 rounded-md shadow-md">
       <div className=" flex items-center ml-3 mt-3">
-        <img
-          className="w-[50px] h-[50px] rounded-full border-2 border-blue-900"
-          src={contact.photoUrl}
-          alt={contact.name}
-        />
+        {contact.photoUrl ? (
+          <img
+            className="w-[50px] h-[50px] rounded-full border-2 border-blue-900"
+            src={contact.photoUrl}
+            alt={contact.name}
+          />
+        ) : (
+          <FaUserCircle
+            size={55}
+            className="w-[50px] h-[50px] rounded-full border-2 border-blue-900"
+          />
+        )}
         <div className="ml-3 ">
           <h1 className="text-2xl font-semibold">{contact.name}</h1>
           <p className="text-sm font-semibold text-blue-900 bg-gray-300 rounded-md">

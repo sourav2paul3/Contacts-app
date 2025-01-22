@@ -24,7 +24,7 @@ const ContactList = () => {
 
     return (
       <div className="w-full">
-        <div className="grid grid-cols-2 lg:grid-cols-4 m-auto md:w-[70%] w-full h-[full] bg-blue gap-9">
+        <div className="container grid grid-cols-2 lg:grid-cols-4 h-[full] bg-blue gap-9">
           {loading ? (
             <p>Loading...</p>
           ) : contacts.length > 0 ? (

@@ -8,7 +8,7 @@ const Navbar = () => {
     const { contacts } = context;
 
     return (
-      <div className="m-auto md:w-[70%] w-[full] h-[100px]">
+      <div className="container h-[100px]">
         <div className="mt-[20px] px-2 py-4 justify-between flex items-center">
           <h1 className="text-1xl font-bold">
             Contact Lists({contacts.length})
