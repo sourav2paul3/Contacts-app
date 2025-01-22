@@ -20,7 +20,7 @@ export const ContactProvider: React.FC<React.PropsWithChildren<{}>> = ({
     const fetchContacts = async () => {
       setLoading(true);
       try {
-        const url = `http://localhost:8091/contacts/getContacts?page=${currentPage}&size=10`;
+        const url = `http://localhost:8091/contacts/getContacts?page=${currentPage}&size=8`;
         const response = await fetch(url, {
           method: "GET",
           headers: {
