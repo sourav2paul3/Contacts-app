@@ -6,4 +6,5 @@ export type Contact = {
   address: string;
   status: string;
   photoUrl: string;
+  title: string;
 };
