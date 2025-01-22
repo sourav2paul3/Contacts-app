@@ -7,7 +7,7 @@ import { RxCheckCircled } from "react-icons/rx";
 import { FaUserCircle } from "react-icons/fa";
 const ContactCard = ({ contact }: { contact: Contact }) => {
   return (
-    <div className="w-[260px] h-[235px] bg-blue-100 rounded-md shadow-md">
+    <div className="w-[260px] h-[235px] bg-blue-100 rounded-md shadow-lg">
       <div className=" flex items-center ml-3 mt-3">
         {contact.photoUrl ? (
           <img
