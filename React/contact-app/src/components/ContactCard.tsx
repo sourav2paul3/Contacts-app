@@ -23,7 +23,7 @@ const ContactCard = ({ contact }: { contact: Contact }) => {
         )}
         <div className="ml-3 ">
           <h1 className="text-2xl font-semibold">{contact.name}</h1>
-          <p className="text-sm font-semibold text-blue-900 bg-gray-300 rounded-md">
+          <p className="px-2 text-sm font-semibold text-blue-900 bg-gray-300 rounded-md">
             {contact.title}
           </p>
         </div>
