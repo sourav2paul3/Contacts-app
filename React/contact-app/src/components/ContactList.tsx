@@ -39,7 +39,12 @@ const ContactList = () => {
             </div>
           ) : contacts.length > 0 ? (
             contacts.map((contact) => (
-              <Link to={`/contact/${contact.id}`} key={contact.id}>
+              <Link
+                to={`/contact/${contact.id}`}
+                key={contact.id}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ContactCard key={contact.id} contact={contact} />
               </Link>
             ))
