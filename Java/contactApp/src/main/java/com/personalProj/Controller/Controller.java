@@ -64,5 +64,11 @@ public class Controller {
 	public byte[] getPhoto(@PathVariable("fileName") String fileName) throws IOException {
 		return Files.readAllBytes(Paths.get(Constants.PHOTO_DIRECTORY+"\\"+fileName));
 	}
+	
+	@GetMapping(value = "/removePhoto", produces = "application/json")
+	public ResponseEntity<Contact> removePhoto(@RequestParam("id") String id)
+			{
+		return ResponseEntity.ok().body(contactService.removePhoto(id));
+	}
 
 }

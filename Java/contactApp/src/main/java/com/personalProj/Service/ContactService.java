@@ -86,4 +86,11 @@ public class ContactService {
 		}
 
 	};
+
+	public Contact removePhoto(String id) {
+		Contact contact = getContact(id);
+		contact.setPhotoUrl(null);
+		contactRepository.save(contact);
+		return contact;
+	}
 }

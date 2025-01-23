@@ -199,7 +199,7 @@ const CreateContact = () => {
                   Cancel
                 </button>
                 <button
-                  className="bg-blue-900 px-2 py-1 text-white rounded-md w-[100px] flex items-center gap-2"
+                  className="bg-blue-500 px-2 py-1 text-white rounded-md w-[100px] flex items-center gap-2"
                   type="submit"
                 >
                   <span>

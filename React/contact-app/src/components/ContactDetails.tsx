@@ -9,6 +9,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoSaveOutline } from "react-icons/io5";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 const ContactDetails = () => {
   const navigate = useNavigate();
@@ -67,6 +68,45 @@ const ContactDetails = () => {
     window.location.reload();
   };
 
+  const handleSave = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      if (contact && contact.name && contact.phone) {
+        const responseCreateContact = await fetch(
+          "http://localhost:8091/contacts/update",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(contact),
+          }
+        );
+        const data = await responseCreateContact.json();
+        if (data.id) {
+          handleBack();
+        }
+      } else {
+        toast.error("Name and Phone Number are required");
+      }
+    } catch (error) {
+      toast.error("Error while updating contact");
+    }
+  };
+
+  const handleImageDelete = async (id: string) => {
+    try {
+      await fetch(`http://localhost:8091/contacts/removePhoto?id=${id}`, {
+        method: "GET",
+      });
+      setContact((prev) => ({
+        ...prev,
+        photoUrl: `${prev.photoUrl}?update_at=${new Date().getTime()}`,
+      }));
+      toast.success("Photo removed");
+    } catch (error) {
+      toast.error("Failed to remove image");
+    }
+  };
+
   if (!context) {
     return (
       <div>
@@ -95,29 +135,39 @@ const ContactDetails = () => {
         )}
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold">{contact.name || "No Name"}</h1>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 mt-3">
             JPG, GIF, or PNG, Max size of 10MB
           </p>
-          <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg text-sm flex items-center gap-2 w-[150px]"
-            onClick={handleFileSelect}
-          >
-            <IoCloudUploadOutline size={20} />
-            Choose Image
-          </button>
-          <input
-            type="file"
-            ref={fileInputRef}
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) uploadPic(contact.id, file);
-            }}
-          />
+          <div className="flex gap-3 ">
+            <button
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg text-sm flex items-center gap-2 w-auto"
+              onClick={handleFileSelect}
+            >
+              <IoCloudUploadOutline size={20} />
+              Choose Image
+            </button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) uploadPic(contact.id, file);
+              }}
+            />
+            <button
+              className="bg-red-500 text-white py-2 px-4 rounded-lg text-sm flex items-center gap-2 w-auto"
+              onClick={() => handleImageDelete(contact.id)}
+              type="button"
+            >
+              <IoIosRemoveCircleOutline size={20} />
+              Remove Image
+            </button>
+          </div>
         </div>
       </div>
       <div className="bg-blue-100 p-4 rounded-lg shadow">
-        <form>
+        <form onSubmit={handleSave}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block font-bold">
@@ -201,7 +251,7 @@ const ContactDetails = () => {
           </div>
           <div className="mt-4 flex justify-between">
             <button
-              className="bg-red-800 px-4 py-2 text-white rounded-md w-[100px] flex items-center gap-2"
+              className="bg-red-500 px-4 py-2 text-white rounded-md w-[100px] flex items-center gap-2"
               type="submit"
               onClick={handleBack}
             >
