@@ -32,9 +32,9 @@ const ContactList = () => {
 
     return (
       <div className="w-full">
-        <div className="container grid grid-cols-2 lg:grid-cols-4 h-[full] bg-blue gap-9">
+        <div className="container grid grid-cols-2 lg:grid-cols-4 h-full gap-9">
           {loading ? (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center h-full col-span-full">
               <div className="loader"></div>
             </div>
           ) : contacts.length > 0 ? (
@@ -49,7 +49,9 @@ const ContactList = () => {
               </Link>
             ))
           ) : (
-            <p>No contacts found.</p>
+            <div className="flex justify-center items-center h-full col-span-full">
+              <p>No contacts found.</p>
+            </div>
           )}
         </div>
         <div className="flex justify-center items-center mt-4">
